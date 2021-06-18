@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="FinanceManager" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="FinanceManagerContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="FinanceManager.User" />
+    <EntitySet Name="Contacts" EntityType="FinanceManager.Contact" />
+    <AssociationSet Name="UserContact" Association="FinanceManager.UserContact">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="LiabilityContact" Association="FinanceManager.LiabilityContact">
+      <End Role="Liability" EntitySet="Liabilities" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <EntitySet Name="Incomes" EntityType="FinanceManager.Income" />
+    <EntitySet Name="Expenses" EntityType="FinanceManager.Expense" />
+    <AssociationSet Name="UserIncome" Association="FinanceManager.UserIncome">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Income" EntitySet="Incomes" />
+    </AssociationSet>
+    <AssociationSet Name="UserExpense" Association="FinanceManager.UserExpense">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Expense" EntitySet="Expenses" />
+    </AssociationSet>
+    <AssociationSet Name="ContactIncome" Association="FinanceManager.ContactIncome">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Income" EntitySet="Incomes" />
+    </AssociationSet>
+    <AssociationSet Name="ContactExpense" Association="FinanceManager.ContactExpense">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Expense" EntitySet="Expenses" />
+    </AssociationSet>
+    <EntitySet Name="Liabilities" EntityType="FinanceManager.Liability" />
+    <EntitySet Name="Assets" EntityType="FinanceManager.Asset" />
+    <AssociationSet Name="UserAsset" Association="FinanceManager.UserAsset">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Asset" EntitySet="Assets" />
+    </AssociationSet>
+    <AssociationSet Name="UserLiability" Association="FinanceManager.UserLiability">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Liability" EntitySet="Liabilities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" />
+    <Property Name="FName" Type="String" Nullable="false" />
+    <Property Name="LName" Type="String" Nullable="false" />
+    <NavigationProperty Name="Contacts" Relationship="FinanceManager.UserContact" FromRole="User" ToRole="Contact" />
+    <NavigationProperty Name="Incomes" Relationship="FinanceManager.UserIncome" FromRole="User" ToRole="Income" />
+    <NavigationProperty Name="Expenses" Relationship="FinanceManager.UserExpense" FromRole="User" ToRole="Expense" />
+    <NavigationProperty Name="Assets" Relationship="FinanceManager.UserAsset" FromRole="User" ToRole="Asset" />
+    <NavigationProperty Name="Liabilities" Relationship="FinanceManager.UserLiability" FromRole="User" ToRole="Liability" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FName" Type="String" Nullable="false" />
+    <Property Name="LName" Type="String" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="FinanceManager.UserContact" FromRole="Contact" ToRole="User" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Liabilities" Relationship="FinanceManager.LiabilityContact" FromRole="Contact" ToRole="Liability" />
+    <Property Name="Email" Type="String" Nullable="false" />
+    <NavigationProperty Name="Incomes" Relationship="FinanceManager.ContactIncome" FromRole="Contact" ToRole="Income" />
+    <NavigationProperty Name="Expenses" Relationship="FinanceManager.ContactExpense" FromRole="Contact" ToRole="Expense" />
+  </EntityType>
+  <Association Name="UserContact">
+    <End Type="FinanceManager.User" Role="User" Multiplicity="1" />
+    <End Type="FinanceManager.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Income">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Amount" Type="String" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" />
+    <Property Name="isRecurring" Type="String" Nullable="false" />
+    <Property Name="Date" Type="String" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="FinanceManager.UserIncome" FromRole="Income" ToRole="User" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Contact" Relationship="FinanceManager.ContactIncome" FromRole="Income" ToRole="Contact" />
+    <Property Name="ContactId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Expense">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Amount" Type="String" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" />
+    <Property Name="isRecurring" Type="String" Nullable="false" />
+    <Property Name="Date" Type="String" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="FinanceManager.UserExpense" FromRole="Expense" ToRole="User" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Contact" Relationship="FinanceManager.ContactExpense" FromRole="Expense" ToRole="Contact" />
+    <Property Name="ContactId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Asset">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" />
+    <Property Name="Value" Type="String" Nullable="false" />
+    <Property Name="Date" Type="String" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="FinanceManager.UserAsset" FromRole="Asset" ToRole="User" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Liability">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Contact" Relationship="FinanceManager.LiabilityContact" FromRole="Liability" ToRole="Contact" />
+    <Property Name="Description" Type="String" Nullable="false" />
+    <Property Name="Value" Type="String" Nullable="false" />
+    <Property Name="Date" Type="String" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="FinanceManager.UserLiability" FromRole="Liability" ToRole="User" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="LiabilityContact">
+    <End Type="FinanceManager.Liability" Role="Liability" Multiplicity="*" />
+    <End Type="FinanceManager.Contact" Role="Contact" Multiplicity="1" />
+  </Association>
+  <Association Name="UserIncome">
+    <End Type="FinanceManager.User" Role="User" Multiplicity="1" />
+    <End Type="FinanceManager.Income" Role="Income" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Income">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserExpense">
+    <End Type="FinanceManager.User" Role="User" Multiplicity="1" />
+    <End Type="FinanceManager.Expense" Role="Expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ContactIncome">
+    <End Type="FinanceManager.Contact" Role="Contact" Multiplicity="1" />
+    <End Type="FinanceManager.Income" Role="Income" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Income">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ContactExpense">
+    <End Type="FinanceManager.Contact" Role="Contact" Multiplicity="1" />
+    <End Type="FinanceManager.Expense" Role="Expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserAsset">
+    <End Type="FinanceManager.User" Role="User" Multiplicity="1" />
+    <End Type="FinanceManager.Asset" Role="Asset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Asset">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserLiability">
+    <End Type="FinanceManager.User" Role="User" Multiplicity="1" />
+    <End Type="FinanceManager.Liability" Role="Liability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Liability">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

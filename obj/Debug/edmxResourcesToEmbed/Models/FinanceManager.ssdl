@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinanceManager.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="FinanceManagerStoreContainer">
+    <EntitySet Name="Users" EntityType="FinanceManager.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contacts" EntityType="FinanceManager.Store.Contacts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Transactions" EntityType="FinanceManager.Store.Transactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BalanceSheets" EntityType="FinanceManager.Store.BalanceSheets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BalanceSheets_Liability" EntityType="FinanceManager.Store.BalanceSheets_Liability" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Transactions_Income" EntityType="FinanceManager.Store.Transactions_Income" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Transactions_Expense" EntityType="FinanceManager.Store.Transactions_Expense" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BalanceSheets_Asset" EntityType="FinanceManager.Store.BalanceSheets_Asset" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserTransaction" Association="FinanceManager.Store.UserTransaction">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="UserContact" Association="FinanceManager.Store.UserContact">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="UserBalanceSheet" Association="FinanceManager.Store.UserBalanceSheet">
+      <End Role="User" EntitySet="Users" />
+      <End Role="BalanceSheet" EntitySet="BalanceSheets" />
+    </AssociationSet>
+    <AssociationSet Name="ContactTransaction" Association="FinanceManager.Store.ContactTransaction">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="LiabilityContact" Association="FinanceManager.Store.LiabilityContact">
+      <End Role="Liability" EntitySet="BalanceSheets_Liability" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Liability_inherits_BalanceSheet" Association="FinanceManager.Store.FK_Liability_inherits_BalanceSheet">
+      <End Role="BalanceSheet" EntitySet="BalanceSheets" />
+      <End Role="Liability" EntitySet="BalanceSheets_Liability" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Income_inherits_Transaction" Association="FinanceManager.Store.FK_Income_inherits_Transaction">
+      <End Role="Transaction" EntitySet="Transactions" />
+      <End Role="Income" EntitySet="Transactions_Income" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expense_inherits_Transaction" Association="FinanceManager.Store.FK_Expense_inherits_Transaction">
+      <End Role="Transaction" EntitySet="Transactions" />
+      <End Role="Expense" EntitySet="Transactions_Expense" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Asset_inherits_BalanceSheet" Association="FinanceManager.Store.FK_Asset_inherits_BalanceSheet">
+      <End Role="BalanceSheet" EntitySet="BalanceSheets" />
+      <End Role="Asset" EntitySet="BalanceSheets_Asset" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Liability_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Amount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsRecurring" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ContactId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BalanceSheets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BalanceSheets_Liability">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="LiabilityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transactions_Income">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="IncomeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transactions_Expense">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="ExpenseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BalanceSheets_Asset">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="AssetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UserTransaction">
+    <End Role="User" Type="FinanceManager.Store.Users" Multiplicity="1" />
+    <End Role="Transaction" Type="FinanceManager.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserContact">
+    <End Role="User" Type="FinanceManager.Store.Users" Multiplicity="1" />
+    <End Role="Contact" Type="FinanceManager.Store.Contacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserBalanceSheet">
+    <End Role="User" Type="FinanceManager.Store.Users" Multiplicity="1" />
+    <End Role="BalanceSheet" Type="FinanceManager.Store.BalanceSheets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BalanceSheet">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ContactTransaction">
+    <End Role="Contact" Type="FinanceManager.Store.Contacts" Multiplicity="1" />
+    <End Role="Transaction" Type="FinanceManager.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LiabilityContact">
+    <End Role="Liability" Type="FinanceManager.Store.BalanceSheets_Liability" Multiplicity="1" />
+    <End Role="Contact" Type="FinanceManager.Store.Contacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Liability">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="Liability_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Liability_inherits_BalanceSheet">
+    <End Role="BalanceSheet" Type="FinanceManager.Store.BalanceSheets" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Liability" Type="FinanceManager.Store.BalanceSheets_Liability" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BalanceSheet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Liability">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Income_inherits_Transaction">
+    <End Role="Transaction" Type="FinanceManager.Store.Transactions" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Income" Type="FinanceManager.Store.Transactions_Income" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Income">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expense_inherits_Transaction">
+    <End Role="Transaction" Type="FinanceManager.Store.Transactions" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Expense" Type="FinanceManager.Store.Transactions_Expense" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Asset_inherits_BalanceSheet">
+    <End Role="BalanceSheet" Type="FinanceManager.Store.BalanceSheets" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Asset" Type="FinanceManager.Store.BalanceSheets_Asset" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BalanceSheet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Asset">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{71688641-A712-4E51-AD47-8B2A640AB2B4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>EnterpriseCourseworkTwo</RootNamespace>
+    <AssemblyName>EnterpriseCourseworkTwo</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Asset.cs">
+      <DependentUpon>FinanceManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.cs">
+      <DependentUpon>FinanceManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContactEmail.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactEmail.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EditContactView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditContactView.Designer.cs">
+      <DependentUpon>EditContactView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expense.cs">
+      <DependentUpon>FinanceManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetData.cs" />
+    <Compile Include="Income.cs">
+      <DependentUpon>FinanceManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Liability.cs">
+      <DependentUpon>FinanceManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NumberEntryRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NumberEntryRow.Designer.cs">
+      <DependentUpon>NumberEntryRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PredictionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PredictionView.Designer.cs">
+      <DependentUpon>PredictionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportView.Designer.cs">
+      <DependentUpon>ReportView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackBtnControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BackBtnControl.Designer.cs">
+      <DependentUpon>BackBtnControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TempIncome.cs">
+      <DependentUpon>TempIncome.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TempIncome.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TempIncome.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>FinanceManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\AddAssetsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\AddAssetsView.Designer.cs">
+      <DependentUpon>AddAssetsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\AddContactView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\AddContactView.Designer.cs">
+      <DependentUpon>AddContactView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\AddLiabilitiesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\AddLiabilitiesView.Designer.cs">
+      <DependentUpon>AddLiabilitiesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\AssetsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\AssetsView.Designer.cs">
+      <DependentUpon>AssetsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\ContactsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\ContactsView.Designer.cs">
+      <DependentUpon>ContactsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinanceManager.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinanceManager.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinanceManager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinanceManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinanceManager.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinanceManager.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\EditAssets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\EditAssets.Designer.cs">
+      <DependentUpon>EditAssets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\LiabilitiesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\LiabilitiesView.Designer.cs">
+      <DependentUpon>LiabilitiesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\IncomeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\IncomeView.Designer.cs">
+      <DependentUpon>IncomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\AddIncomeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\AddIncomeView.Designer.cs">
+      <DependentUpon>AddIncomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\EditIncomeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\EditIncomeView.Designer.cs">
+      <DependentUpon>EditIncomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\AddExpense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\AddExpense.Designer.cs">
+      <DependentUpon>AddExpense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\ExpenseView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\ExpenseView.Designer.cs">
+      <DependentUpon>ExpenseView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsControllers\EditExpenseView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewsControllers\EditExpenseView.Designer.cs">
+      <DependentUpon>EditExpenseView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TempContacts.cs">
+      <DependentUpon>TempContacts.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TempContacts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TempContacts.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TempData.cs">
+      <DependentUpon>TempData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TempData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TempData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TempUsers.cs">
+      <DependentUpon>TempUsers.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TempUsers.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TempUsers.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="EditContactView.resx">
+      <DependentUpon>EditContactView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NumberEntryRow.resx">
+      <DependentUpon>NumberEntryRow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PredictionView.resx">
+      <DependentUpon>PredictionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportView.resx">
+      <DependentUpon>ReportView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackBtnControl.resx">
+      <DependentUpon>BackBtnControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\AddAssetsView.resx">
+      <DependentUpon>AddAssetsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\AddContactView.resx">
+      <DependentUpon>AddContactView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\AddLiabilitiesView.resx">
+      <DependentUpon>AddLiabilitiesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\AssetsView.resx">
+      <DependentUpon>AssetsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\ContactsView.resx">
+      <DependentUpon>ContactsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\EditAssets.resx">
+      <DependentUpon>EditAssets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\LiabilitiesView.resx">
+      <DependentUpon>LiabilitiesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\IncomeView.resx">
+      <DependentUpon>IncomeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\AddIncomeView.resx">
+      <DependentUpon>AddIncomeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\EditIncomeView.resx">
+      <DependentUpon>EditIncomeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\AddExpense.resx">
+      <DependentUpon>AddExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\ExpenseView.resx">
+      <DependentUpon>ExpenseView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsControllers\EditExpenseView.resx">
+      <DependentUpon>EditExpenseView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EntityDeploy Include="FinanceManager.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FinanceManager.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ContactEmail.xsc">
+      <DependentUpon>ContactEmail.xsd</DependentUpon>
+    </None>
+    <None Include="ContactEmail.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ContactEmail.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ContactEmail.xss">
+      <DependentUpon>ContactEmail.xsd</DependentUpon>
+    </None>
+    <None Include="FinanceManager.edmx.diagram">
+      <DependentUpon>FinanceManager.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="TempContacts.xsc">
+      <DependentUpon>TempContacts.xsd</DependentUpon>
+    </None>
+    <None Include="TempContacts.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TempContacts.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TempContacts.xss">
+      <DependentUpon>TempContacts.xsd</DependentUpon>
+    </None>
+    <None Include="TempData.xsc">
+      <DependentUpon>TempData.xsd</DependentUpon>
+    </None>
+    <None Include="TempData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TempData.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TempData.xss">
+      <DependentUpon>TempData.xsd</DependentUpon>
+    </None>
+    <None Include="TempIncome.xsc">
+      <DependentUpon>TempIncome.xsd</DependentUpon>
+    </None>
+    <None Include="TempIncome.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TempIncome.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TempIncome.xss">
+      <DependentUpon>TempIncome.xsd</DependentUpon>
+    </None>
+    <None Include="TempUsers.xsc">
+      <DependentUpon>TempUsers.xsd</DependentUpon>
+    </None>
+    <None Include="TempUsers.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TempUsers.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TempUsers.xss">
+      <DependentUpon>TempUsers.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FinanceManager.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FinanceManager.Context.cs</LastGenOutput>
+      <DependentUpon>FinanceManager.edmx</DependentUpon>
+    </Content>
+    <Content Include="FinanceManager.edmx.sql" />
+    <Content Include="FinanceManager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FinanceManager.cs</LastGenOutput>
+      <DependentUpon>FinanceManager.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

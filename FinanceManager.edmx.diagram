@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4188caa724e44840877e5c6b832373bb" Name="Diagram1" ZoomLevel="88" >
+        <EntityTypeShape EntityType="FinanceManager.User" Width="1.5" PointX="0.5" PointY="4.375" />
+        <EntityTypeShape EntityType="FinanceManager.Contact" Width="1.5" PointX="3" PointY="4.125" />
+        <AssociationConnector Association="FinanceManager.UserContact" />
+        <EntityTypeShape EntityType="FinanceManager.Income" Width="1.5" PointX="5.25" PointY="4.375" />
+        <EntityTypeShape EntityType="FinanceManager.Expense" Width="1.5" PointX="2.875" PointY="8.875" />
+        <EntityTypeShape EntityType="FinanceManager.Asset" Width="1.5" PointX="5.125" PointY="8.5" />
+        <EntityTypeShape EntityType="FinanceManager.Liability" Width="1.5" PointX="7.25" PointY="8.5" />
+        <AssociationConnector Association="FinanceManager.LiabilityContact" />
+        <AssociationConnector Association="FinanceManager.UserIncome" />
+        <AssociationConnector Association="FinanceManager.UserExpense" />
+        <AssociationConnector Association="FinanceManager.ContactIncome" />
+        <AssociationConnector Association="FinanceManager.ContactExpense" />
+        <AssociationConnector Association="FinanceManager.UserAsset" />
+        <AssociationConnector Association="FinanceManager.UserLiability" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
